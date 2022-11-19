@@ -1,9 +1,9 @@
 package com.hackyeah.hy22.bootstrap;
 
+import com.hackyeah.hy22.repositories.FoodRepository;
 import java.time.ZonedDateTime;
 
 import com.hackyeah.hy22.models.FoodProduct;
-import com.hackyeah.hy22.repositories.DummyRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -12,29 +12,29 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class StartupData implements CommandLineRunner {
 
-    private final DummyRepo dummyRepo;
+    private final FoodRepository foodRepository;
 
     @Override
     public void run(String... args) throws Exception {
-        dummyRepo.save(FoodProduct.builder().productName("Milk")
+        foodRepository.save(FoodProduct.builder().productName("Milk")
             .insertDate(ZonedDateTime.now()).build());
-        dummyRepo.save(FoodProduct.builder().productName("Cheese")
+        foodRepository.save(FoodProduct.builder().productName("Cheese")
             .insertDate(ZonedDateTime.now()).build());
-        dummyRepo.save(FoodProduct.builder().productName("Banana")
+        foodRepository.save(FoodProduct.builder().productName("Banana")
             .insertDate(ZonedDateTime.now()).build());
-        dummyRepo.save(FoodProduct.builder().productName("Sour Cream")
+        foodRepository.save(FoodProduct.builder().productName("Sour Cream")
             .insertDate(ZonedDateTime.now()).build());
-        dummyRepo.save(FoodProduct.builder().productName("Raspberry")
+        foodRepository.save(FoodProduct.builder().productName("Raspberry")
             .insertDate(ZonedDateTime.now()).build());
-        dummyRepo.save(FoodProduct.builder().productName("Crack")
+        foodRepository.save(FoodProduct.builder().productName("Crack")
             .insertDate(ZonedDateTime.now()).build());
-        dummyRepo.save(FoodProduct.builder().productName("Chicken")
+        foodRepository.save(FoodProduct.builder().productName("Chicken")
             .insertDate(ZonedDateTime.now()).build());
-        dummyRepo.save(FoodProduct.builder().productName("Fish")
+        foodRepository.save(FoodProduct.builder().productName("Fish")
             .insertDate(ZonedDateTime.now()).build());
-        dummyRepo.save(FoodProduct.builder().productName("Bread")
+        foodRepository.save(FoodProduct.builder().productName("Bread")
             .insertDate(ZonedDateTime.now()).build());
-        dummyRepo.save(FoodProduct.builder().productName("Butter")
+        foodRepository.save(FoodProduct.builder().productName("Butter")
             .insertDate(ZonedDateTime.now()).build());
     }
 }
