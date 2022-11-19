@@ -13,5 +13,6 @@ import java.time.ZonedDateTime;
 @NoArgsConstructor
 public class CreateFoodRequest {
     private String productName;
+    private Float weight;
     private ZonedDateTime expirationDate;
 }

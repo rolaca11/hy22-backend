@@ -18,6 +18,7 @@ public class CreateFoodRequestToFoodProductMapper {
                 .foodType(foodTypeRepository.findByName(request.getProductName()).orElseThrow())
                 .expirationDate(request.getExpirationDate())
                 .insertDate(ZonedDateTime.now())
+                .weight(request.getWeight())
                 .build();
     }
 }

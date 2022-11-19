@@ -16,4 +16,5 @@ public class ApiFoodProduct {
     private ZonedDateTime expirationDate;
     private Long userId;
     private FoodType foodType;
+    private Float weight;
 }

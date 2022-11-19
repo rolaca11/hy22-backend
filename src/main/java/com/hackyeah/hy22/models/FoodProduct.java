@@ -20,6 +20,7 @@ public class FoodProduct {
     private Long id;
     private ZonedDateTime insertDate;
     private ZonedDateTime expirationDate;
+    private Float weight;
 
     @ManyToOne
     private FoodType foodType;

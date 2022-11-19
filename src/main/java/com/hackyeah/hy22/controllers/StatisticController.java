@@ -20,7 +20,6 @@ public class StatisticController {
     @Autowired
     private FoodService foodService;
 
-
     @GetMapping
     public ResponseEntity<List<ApiStatistic>> getStatistic() {
 

@@ -83,11 +83,11 @@ public class FoodService {
     }
 
     private void addToApiStatistic(FoodProduct elem, ApiStatistic apiStatistic) {
-        apiStatistic.addMetal(elem.getFoodType().getMetal());
-        apiStatistic.addBiodegradable(elem.getFoodType().getBiodegradable());
-        apiStatistic.addCommunal(elem.getFoodType().getCommunal());
-        apiStatistic.addPlastic(elem.getFoodType().getPlastic());
-        apiStatistic.addPaper(elem.getFoodType().getPaper());
-        apiStatistic.addUseful(elem.getFoodType().getUseful());
+        apiStatistic.addMetal(elem.getFoodType().getMetal() * elem.getWeight());
+        apiStatistic.addBiodegradable(elem.getFoodType().getBiodegradable() * elem.getWeight());
+        apiStatistic.addCommunal(elem.getFoodType().getCommunal() * elem.getWeight());
+        apiStatistic.addPlastic(elem.getFoodType().getPlastic() * elem.getWeight());
+        apiStatistic.addPaper(elem.getFoodType().getPaper() * elem.getWeight());
+        apiStatistic.addUseful(elem.getFoodType().getUseful() * elem.getWeight());
     }
 }
