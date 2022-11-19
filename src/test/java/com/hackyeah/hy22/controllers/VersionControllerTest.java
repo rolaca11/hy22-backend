@@ -28,7 +28,7 @@ class VersionControllerTest {
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @Test
-    void version() throws Exception {
+    void versionWithAuth() throws Exception {
         MockHttpServletResponse tokenResponse = mockMvc.perform(post("/login")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .content("username=ropi&password=ropi")).andReturn().getResponse();
@@ -40,5 +40,12 @@ class VersionControllerTest {
 
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
         assertThat(objectMapper.readValue(response.getContentAsByteArray(), VersionResponse.class).getVersion()).isNotNull();
+    }
+
+    @Test
+    void versionWithoutAuth() throws Exception {
+        MockHttpServletResponse response = mockMvc.perform(get("/version")).andReturn().getResponse();
+
+        assertThat(response.getStatus()).isNotEqualTo(HttpStatus.OK.value());
     }
 }

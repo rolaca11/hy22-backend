@@ -28,7 +28,7 @@ public class LocalSecurityContextRepository implements SecurityContextRepository
 
     @Override
     public void saveContext(SecurityContext context, HttpServletRequest request, HttpServletResponse response) {
-        String token = getBearerToken(request).orElseGet(() -> request.getAttribute(GENERATED_BEARER_TOKEN).toString());
+        String token = getBearerToken(request).orElseGet(() -> String.valueOf(request.getAttribute(GENERATED_BEARER_TOKEN)));
         tokenContextMap.put(token, context);
     }
 
