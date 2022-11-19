@@ -1,5 +1,6 @@
 package com.hackyeah.hy22.api;
 
+import com.hackyeah.hy22.models.FoodType;
 import lombok.*;
 
 import java.time.ZonedDateTime;
@@ -14,4 +15,5 @@ public class ApiFoodProduct {
     private ZonedDateTime insertDate;
     private ZonedDateTime expirationDate;
     private Long userId;
+    private FoodType foodType;
 }

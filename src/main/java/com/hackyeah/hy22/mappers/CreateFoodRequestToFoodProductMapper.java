@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.time.ZonedDateTime;
-
 @Component
 @RequiredArgsConstructor
 public class CreateFoodRequestToFoodProductMapper {
