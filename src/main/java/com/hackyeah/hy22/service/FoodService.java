@@ -15,8 +15,8 @@ public class FoodService {
     @Autowired
     private FoodRepository foodRepository;
 
-    public void createFood(FoodProduct foodProduct) {
-        foodRepository.save(foodProduct);
+    public FoodProduct createFood(FoodProduct foodProduct) {
+        return foodRepository.save(foodProduct);
     }
 
     public void deleteFood(Long id) {

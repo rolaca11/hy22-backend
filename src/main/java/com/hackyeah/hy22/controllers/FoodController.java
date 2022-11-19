@@ -14,9 +14,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping("/food")
 public class FoodController {
 
-    private final String endPoint = "/food";
     @Autowired
     private FoodService foodService;
     @Autowired
@@ -25,21 +25,21 @@ public class FoodController {
     @Autowired
     private CreateFoodRequestToFoodProductMapper createFoodRequestToFoodProductMapper;
 
-    @RequestMapping(method = RequestMethod.POST, value = endPoint)
-    public ResponseEntity<String> create(@RequestBody CreateFoodRequest request) {
+    @PostMapping
+    public ResponseEntity<ApiFoodProduct> create(@RequestBody CreateFoodRequest request) {
 
-        foodService.createFood(createFoodRequestToFoodProductMapper.map(request));
-        return new ResponseEntity<>("Food created!", HttpStatus.OK);
+        ApiFoodProduct result = foodMapper.map(foodService.createFood(createFoodRequestToFoodProductMapper.map(request)));
+        return ResponseEntity.ok(result);
     }
 
-    @RequestMapping(value = endPoint + "/{foodId}/delete")
-    public ResponseEntity<String> delete(@PathVariable Long foodId) {
+    @DeleteMapping("/{foodId}")
+    public ResponseEntity<Void> delete(@PathVariable Long foodId) {
 
         foodService.deleteFood(foodId);
-        return new ResponseEntity<>("Food deleted!", HttpStatus.OK);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = endPoint)
+    @GetMapping
     public ResponseEntity<List<ApiFoodProduct>> listAll() {
 
         List<ApiFoodProduct> response = foodService.listAllFood().stream().map(
@@ -47,7 +47,7 @@ public class FoodController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @RequestMapping(value = endPoint + "/{foodId}/get")
+    @GetMapping("/{foodId}")
     public ResponseEntity<ApiFoodProduct> get(@PathVariable Long foodId) {
 
         return new ResponseEntity<>(foodMapper.map(
