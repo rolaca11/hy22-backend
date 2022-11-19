@@ -12,10 +12,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class BasicExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(NoSuchElementFoundException.class)
-    public ResponseEntity<Object> handle(NoSuchElementFoundException exception, WebRequest request)
-    {
+    public ResponseEntity<Object> handleNoSuchElementFoundException(NoSuchElementFoundException exception) {
         return new ResponseEntity<>(ApiError.builder()
                 .errorMessage(exception.getMessage())
-                .build(), HttpStatus.NOT_FOUND);
+                .errorCode(exception.getStatus())
+                .build(), exception.getStatus());
     }
 }
