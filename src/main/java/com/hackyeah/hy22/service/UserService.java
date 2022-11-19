@@ -1,21 +1,16 @@
 package com.hackyeah.hy22.service;
 
+import com.hackyeah.hy22.models.User;
+import com.hackyeah.hy22.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
-
     @Autowired
-    private InMemoryUserDetailsManager manager;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private UserRepository userRepository;
 
     public void registerUser(String username, String password) {
-        manager.createUser(User.builder().username(username).password(passwordEncoder
-                .encode(password)).authorities("authority").build());
+        userRepository.save(User.builder().username(username).password(password).build());
     }
 }

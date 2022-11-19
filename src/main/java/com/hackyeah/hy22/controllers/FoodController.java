@@ -8,6 +8,8 @@ import com.hackyeah.hy22.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,7 +30,9 @@ public class FoodController {
     @PostMapping
     public ResponseEntity<ApiFoodProduct> create(@RequestBody CreateFoodRequest request) {
 
-        ApiFoodProduct result = foodMapper.map(foodService.createFood(createFoodRequestToFoodProductMapper.map(request)));
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ApiFoodProduct result = foodMapper.map(foodService.createFood(createFoodRequestToFoodProductMapper.map(request)
+                ,((UserDetails)principal).getUsername()));
         return ResponseEntity.ok(result);
     }
 

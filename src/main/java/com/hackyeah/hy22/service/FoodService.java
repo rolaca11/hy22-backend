@@ -2,7 +2,9 @@ package com.hackyeah.hy22.service;
 
 import com.hackyeah.hy22.exception.NoSuchElementFoundException;
 import com.hackyeah.hy22.models.FoodProduct;
+import com.hackyeah.hy22.models.User;
 import com.hackyeah.hy22.repositories.FoodRepository;
+import com.hackyeah.hy22.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +17,12 @@ public class FoodService {
     @Autowired
     private FoodRepository foodRepository;
 
-    public FoodProduct createFood(FoodProduct foodProduct) {
+    @Autowired
+    private UserRepository userRepository;
+
+    public FoodProduct createFood(FoodProduct foodProduct, String username) {
+        User user = userRepository.findByUsername(username);
+        foodProduct.setUserId(user.getId());
         return foodRepository.save(foodProduct);
     }
 

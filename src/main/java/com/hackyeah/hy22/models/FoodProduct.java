@@ -2,9 +2,7 @@ package com.hackyeah.hy22.models;
 
 import java.time.ZonedDateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,4 +23,5 @@ public class FoodProduct {
     private String productName;
     private ZonedDateTime insertDate;
     private ZonedDateTime expirationDate;
+    private Long userId;
 }
