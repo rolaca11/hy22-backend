@@ -3,6 +3,8 @@ package com.hackyeah.hy22.bootstrap;
 import com.hackyeah.hy22.repositories.FoodRepository;
 import java.time.ZonedDateTime;
 
+import javax.transaction.Transactional;
+
 import com.hackyeah.hy22.models.FoodProduct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -15,6 +17,7 @@ public class StartupData implements CommandLineRunner {
     private final FoodRepository foodRepository;
 
     @Override
+    @Transactional
     public void run(String... args) throws Exception {
         foodRepository.save(FoodProduct.builder().productName("Milk")
             .insertDate(ZonedDateTime.now())
