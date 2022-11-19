@@ -12,4 +12,5 @@ public class ApiFoodProduct {
     private Long id;
     private String productName;
     private ZonedDateTime insertDate;
+    private ZonedDateTime expirationDate;
 }
