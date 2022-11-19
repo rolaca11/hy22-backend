@@ -1,52 +1,53 @@
 package com.hackyeah.hy22.controllers;
 
 import com.hackyeah.hy22.api.ApiFoodProduct;
+import com.hackyeah.hy22.api.CreateFoodRequest;
+import com.hackyeah.hy22.mappers.CreateFoodRequestToFoodProductMapper;
 import com.hackyeah.hy22.mappers.FoodMapper;
-import com.hackyeah.hy22.models.VersionResponse;
 import com.hackyeah.hy22.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/food")
 public class FoodController {
+
+    private final String endPoint = "/food";
     @Autowired
     private FoodService foodService;
     @Autowired
     private FoodMapper foodMapper;
 
-    @GetMapping(value = "/create")
-    public ResponseEntity<String> create() {
+    @Autowired
+    private CreateFoodRequestToFoodProductMapper createFoodRequestToFoodProductMapper;
 
-        foodService.createFood();
+    @RequestMapping(method = RequestMethod.POST, value = endPoint)
+    public ResponseEntity<String> create(@RequestBody CreateFoodRequest request) {
+
+        foodService.createFood(createFoodRequestToFoodProductMapper.map(request));
         return new ResponseEntity<>("Food created!", HttpStatus.OK);
     }
 
-    @GetMapping(value = "/{foodId}/delete")
+    @RequestMapping(value = endPoint + "/{foodId}/delete")
     public ResponseEntity<String> delete(@PathVariable Long foodId) {
 
         foodService.deleteFood(foodId);
         return new ResponseEntity<>("Food deleted!", HttpStatus.OK);
     }
 
-    @GetMapping(value = "/getAll")
+    @RequestMapping(method = RequestMethod.GET, value = endPoint)
     public ResponseEntity<List<ApiFoodProduct>> listAll() {
 
-        foodService.createFood();
         List<ApiFoodProduct> response = foodService.listAllFood().stream().map(
                 elem -> foodMapper.map(elem)).collect(Collectors.toList());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/{foodId}/get")
+    @RequestMapping(value = endPoint + "/{foodId}/get")
     public ResponseEntity<ApiFoodProduct> get(@PathVariable Long foodId) {
 
         return new ResponseEntity<>(foodMapper.map(

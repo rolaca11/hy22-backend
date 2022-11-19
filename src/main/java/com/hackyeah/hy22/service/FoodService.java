@@ -3,20 +3,17 @@ package com.hackyeah.hy22.service;
 import com.hackyeah.hy22.models.FoodProduct;
 import com.hackyeah.hy22.repositories.FoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 public class FoodService {
 
     @Autowired
     private FoodRepository foodRepository;
 
-    public void createFood() {
-        FoodProduct foodProduct = FoodProduct.builder()
-                .productName("Alma")
-                .build();
+    public void createFood(FoodProduct foodProduct) {
         foodRepository.save(foodProduct);
     }
 
@@ -26,7 +23,6 @@ public class FoodService {
     }
 
     public List<FoodProduct> listAllFood() {
-
         return foodRepository.findAll();
     }
 
