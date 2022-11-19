@@ -12,6 +12,7 @@ public class FoodService {
 
     @Autowired
     private FoodRepository foodRepository;
+
     public void createFood() {
         FoodProduct foodProduct = FoodProduct.builder()
                 .productName("Alma")
@@ -23,8 +24,14 @@ public class FoodService {
         //Todo: Handle not found case
         foodRepository.delete(foodRepository.findById(id).get());
     }
+
     public List<FoodProduct> listAllFood() {
 
         return foodRepository.findAll();
+    }
+
+    public FoodProduct getFood(Long id) {
+        //Todo: Handle not found case
+        return foodRepository.findById(id).get();
     }
 }

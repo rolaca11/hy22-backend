@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,18 +31,25 @@ public class FoodController {
     }
 
     @GetMapping(value = "/{foodId}/delete")
-    public ResponseEntity<String> delete(Long foodId) {
+    public ResponseEntity<String> delete(@PathVariable Long foodId) {
 
         foodService.deleteFood(foodId);
         return new ResponseEntity<>("Food deleted!", HttpStatus.OK);
     }
 
-    @GetMapping(value = "/listAll")
+    @GetMapping(value = "/getAll")
     public ResponseEntity<List<ApiFoodProduct>> listAll() {
 
         foodService.createFood();
         List<ApiFoodProduct> response = foodService.listAllFood().stream().map(
                 elem -> foodMapper.map(elem)).collect(Collectors.toList());
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/{foodId}/get")
+    public ResponseEntity<ApiFoodProduct> get(@PathVariable Long foodId) {
+
+        return new ResponseEntity<>(foodMapper.map(
+                foodService.getFood(foodId)), HttpStatus.OK);
     }
 }
