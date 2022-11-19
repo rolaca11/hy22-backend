@@ -24,4 +24,5 @@ public class FoodProduct {
     private Long id;
     private String productName;
     private ZonedDateTime insertDate;
+    private ZonedDateTime expirationDate;
 }
