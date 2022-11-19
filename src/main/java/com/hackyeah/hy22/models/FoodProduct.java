@@ -1,14 +1,12 @@
 package com.hackyeah.hy22.models;
 
+import lombok.*;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.time.ZonedDateTime;
-
-import javax.persistence.*;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
 @Setter
@@ -20,8 +18,10 @@ public class FoodProduct {
     @Id
     @GeneratedValue
     private Long id;
-    private String productName;
     private ZonedDateTime insertDate;
     private ZonedDateTime expirationDate;
+
+    @ManyToOne
+    private FoodType foodType;
     private Long userId;
 }

@@ -36,10 +36,10 @@ public class FoodControllerTest {
     private FoodRepository foodRepository;
 
     @Test
-    @WithMockUser
+    @WithMockUser("ropi")
     void testAddFoodProduct() throws Exception {
         String request = objectMapper.writeValueAsString(CreateFoodRequest.builder()
-                .productName("Tesco")
+                .productName("Cheese")
                 .build());
 
         MockHttpServletResponse response = mockMvc.perform(post("/food")
@@ -55,7 +55,7 @@ public class FoodControllerTest {
     }
 
     @Test
-    @WithMockUser
+    @WithMockUser("ropi")
     void testGetAllFoodProducts() throws Exception {
         MockHttpServletResponse response = mockMvc.perform(get("/food")).andReturn().getResponse();
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
@@ -66,9 +66,9 @@ public class FoodControllerTest {
     }
 
     @Test
-    @WithMockUser
+    @WithMockUser("ropi")
     void testGetSpecificFoodProduct() throws Exception {
-        MockHttpServletResponse response = mockMvc.perform(get("/food/1")).andReturn().getResponse();
+        MockHttpServletResponse response = mockMvc.perform(get("/food/12")).andReturn().getResponse();
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
 
         ApiFoodProduct product = objectMapper.readValue(response.getContentAsByteArray(), ApiFoodProduct.class);
@@ -77,9 +77,9 @@ public class FoodControllerTest {
     }
 
     @Test
-    @WithMockUser
+    @WithMockUser("ropi")
     void testGetDeleteFoodProduct() throws Exception {
-        MockHttpServletResponse deleteResponse = mockMvc.perform(delete("/food/1")).andReturn().getResponse();
+        MockHttpServletResponse deleteResponse = mockMvc.perform(delete("/food/12")).andReturn().getResponse();
         assertThat(deleteResponse.getStatus()).isEqualTo(HttpStatus.NO_CONTENT.value());
 
         assertThat(foodRepository.findById(1L)).isEmpty();
