@@ -34,7 +34,7 @@ public class FoodService {
     private FoodProduct getFoodProductSafely(Long id) {
         Optional<FoodProduct> foodProduct = foodRepository.findById(id);
         if(foodProduct.isEmpty()){
-            throw new NoSuchElementFoundException(String.format("Invalid food id. Id=%f",id));
+            throw new NoSuchElementFoundException(String.format("Invalid food id. Id=%s",id));
         }
         return foodProduct.get();
     }
