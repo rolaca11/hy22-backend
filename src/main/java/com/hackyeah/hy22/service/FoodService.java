@@ -18,13 +18,10 @@ import java.util.stream.Collectors;
 
 @Service
 public class FoodService {
-
     @Autowired
     private FoodRepository foodRepository;
-
     @Autowired
     private UserRepository userRepository;
-
     public FoodProduct createFood(FoodProduct foodProduct, String username) {
         User user = userRepository.findByUsername(username);
         foodProduct.setUserId(user.getId());

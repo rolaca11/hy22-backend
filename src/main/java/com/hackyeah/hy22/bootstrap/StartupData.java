@@ -132,42 +132,52 @@ public class StartupData implements CommandLineRunner {
         foodRepository.save(FoodProduct.builder().foodType(milk)
                 .insertDate(ZonedDateTime.now())
                 .expirationDate(ZonedDateTime.now().plusDays(7))
+                .weight(6F)
                 .userId(1L).build());
         foodRepository.save(FoodProduct.builder().foodType(cheese)
                 .insertDate(ZonedDateTime.now())
                 .expirationDate(ZonedDateTime.now().plusDays(4))
+                .weight(4F)
                 .userId(1L).build());
         foodRepository.save(FoodProduct.builder().foodType(banana)
                 .insertDate(ZonedDateTime.now())
                 .expirationDate(ZonedDateTime.now().plusDays(9))
+                .weight(6F)
                 .userId(1L).build());
         foodRepository.save(FoodProduct.builder().foodType(sourCream)
                 .insertDate(ZonedDateTime.now())
                 .expirationDate(ZonedDateTime.now().plusDays(12))
+                .weight(7F)
                 .userId(1L).build());
         foodRepository.save(FoodProduct.builder().foodType(raspberry)
                 .insertDate(ZonedDateTime.now())
                 .expirationDate(ZonedDateTime.now().plusDays(8))
+                .weight(8F)
                 .userId(1L).build());
         foodRepository.save(FoodProduct.builder().foodType(crack)
                 .insertDate(ZonedDateTime.now())
                 .expirationDate(ZonedDateTime.now().plusDays(100))
+                .weight(1F)
                 .userId(1L).build());
         foodRepository.save(FoodProduct.builder().foodType(chicken)
                 .insertDate(ZonedDateTime.now())
                 .expirationDate(ZonedDateTime.now().plusDays(10))
+                .weight(2F)
                 .userId(1L).build());
         foodRepository.save(FoodProduct.builder().foodType(fish)
                 .insertDate(ZonedDateTime.now())
                 .expirationDate(ZonedDateTime.now().plusDays(4))
+                .weight(7F)
                 .userId(1L).build());
         foodRepository.save(FoodProduct.builder().foodType(bread)
                 .insertDate(ZonedDateTime.now())
                 .expirationDate(ZonedDateTime.now().plusDays(3))
+                .weight(9F)
                 .userId(1L).build());
         foodRepository.save(FoodProduct.builder().foodType(butter)
                 .insertDate(ZonedDateTime.now())
                 .expirationDate(ZonedDateTime.now().plusDays(30))
+                .weight(2F)
                 .userId(1L).build());
     }
 }

@@ -27,5 +27,5 @@ public class FoodType {
     private Float communal;
 
     @OneToMany
-    List<FoodProduct> foodProducts;
+    private List<FoodProduct> foodProducts;
 }
